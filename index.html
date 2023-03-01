@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather APP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Julee&family=Roboto+Condensed:wght@300&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <embed name="GoodEnough" src="/just-relax-11157.mp3" loop="false" hidden="true" autostart="true">
+</head>
+
+<body>
+    <div class="container">
+        <div class="search">
+            <input type="text" class="search-bar" placeholder="Search">
+            <button class="btn-search"><svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" viewBox="0 0 16 16"
+                    height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15.504 13.616l-3.79-3.223c-0.392-0.353-0.811-0.514-1.149-0.499 0.895-1.048 1.435-2.407 1.435-3.893 0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6c1.486 0 2.845-0.54 3.893-1.435-0.016 0.338 0.146 0.757 0.499 1.149l3.223 3.79c0.552 0.613 1.453 0.665 2.003 0.115s0.498-1.452-0.115-2.003zM6 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z">
+                    </path>
+                </svg>
+            </button>    
+        </div>
+        <div class="date-container">
+            <div class="time" id="time">
+                15:30 <span id="am-pm">PM</span>
+            </div>
+            <div class="date" id="date">
+                Monday, 24 May
+            </div>
+            <h1 class="city"> Seattle</h1>  
+            <div class="description-weather" id="current-weather-description">
+                <div class="w-icon-current"> 
+                    <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" id="w-icon-current">
+                    <div style="font-size: 25px;" id="weather-current-icon">25.6&#176 C</div>
+                    <div style="font-size: 25px;" id="weather-current-icon1">Cloudy</div>
+                </div>    
+            </div>
+            <div class="today-week">              
+                <button class="buttontoday" id="my-btnToday">Today</button>
+                <button class="buttontoday" id="my-btnWeekly">Weekly</button>
+            </div>
+        </div>
+        <div class="weather-items" id="weather-items">            
+            <h2>Today's highlights</h2>  
+            <div class="weather-today-highlights">
+                <h4>Humidity</h4>
+                <p>60%</p>
+            </div>     
+            <div class="weather-today-highlights">
+                <h4>Wind speed</h4>
+                <p>6.2 mph</p>
+            </div>  
+            <div class="weather-today-highlights">
+                <h4>Temp Max</h4>
+                <p style="margin-top: 10px;">30&#176 F</p>
+                <h4>Temp Min</h4>
+                <p style="margin-top: 10px;">10&#176 F</p>
+            </div>  
+            <div class="weather-today-highlights">
+                <h4>Sunrise</h4>
+                <p>5:00 am</p>
+            </div>  
+            <div class="weather-today-highlights">
+                <h4>Sunset</h4>
+                <p>6:00 pm</p>
+            </div>  
+            <div class="weather-today-highlights">
+                <h4>Pressure</h4>
+                <p>20 in </p>
+            </div> 
+        </div>
+        <div class="daily-weather" id="daily-weather">
+            <div class="weather-forecast" id="weather-forecast">
+                <div class="weather-forecast-item">
+                    <div class="day">Tues</div>
+                    <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">25.6&#176 C</div>
+                </div>
+
+                <div class="weather-forecast-item">
+                    <div class="day">Wed</div>
+                    <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">25.6&#176 F</div>
+                </div>
+
+                <div class="weather-forecast-item">
+                    <div class="day">Fri</div>
+                    <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">25.6&#176 F</div>
+                </div>
+
+                <div class="weather-forecast-item">
+                    <div class="day">Sat</div>
+                    <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">25.6&#176 F</div>
+                </div>
+
+                <div class="weather-forecast-item">
+                    <div class="day">Sun</div>
+                    <img src="http://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">25.6&#176 F</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+</body>
+
+</html>
