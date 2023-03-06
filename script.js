@@ -40,50 +40,35 @@ function fetchWeather(city1)
 function displayData(data)
 {
     const {name, dt, timezone} = data;
+    const {lon, lat} = data.coord;
     const {icon, description} = data.weather[0];
     const {sunrise, sunset} = data.sys;
     const {temp, humidity, temp_max, temp_min, pressure} = data.main;
     const {speed} = data.wind;
     
-    console.log(dt, timezone, name, icon, description, sunrise, sunset, temp, humidity, speed)
-    console.log(data)
-
-    // const dateTime = moment.unix(dt).utc().add(timezone, 's');
-    // console.log(dateTime);
-    // var date = new Date(dateTime);
-    // var hour = date.getHours();
-    // var minutes = date.getMinutes();
-    // var day = date.getDay();
-    // var month = date.getMonth();
-
-    // var hours12Hr = hour >= 13 ? hour %12: hour
-    // var amorpm = hour >= 12 ? 'PM' : 'AM';
-
-    // console.log(hour, minutes, day, month)
-
-    // time1.innerHTML = (hours12Hr < 10? '0'+ hours12Hr : hours12Hr) + ':' + (minutes < 10? '0'+minutes: minutes)+ ' ' + `<span id="am-pm">${amorpm}</span>`
-
-    // date1.innerHTML = days[day] + ', ' + date + ' ' + months[month]
+    initMap(parseFloat(lat), parseFloat(lon));
 
     document.querySelector(".city").innerHTML = name;
-    document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900?4K"+ description + "')";
+    document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900?"+ name + "')";
     document.querySelector(".weather-items").innerHTML = 
     `
-    <h2>Today's highlights</h2>  
             <div class="weather-today-highlights">
                 <h4>Humidity</h4>
                 <p>${humidity} % </p>
             </div>     
             <div class="weather-today-highlights">
-                <h4>Wind speed</h4>
-                <p>${speed} mph</p>
+            <h4>Pressure</h4>
+            <p>${(pressure * 0.02953).toFixed(2)} in </p>
+            </div> 
+
+            <div class="weather-today-highlights">
+                <h4>Temp Min</h4>
+                <p>${Math.ceil(temp_min)}&#176 F</p>
             </div>  
             <div class="weather-today-highlights">
-                <h4>Temp Max</h4>
-                <p style="margin-top: 10px;">${Math.ceil(temp_max)}&#176 F</p>
-                <h4>Temp Min</h4>
-                <p style="margin-top: 10px;">${Math.ceil(temp_min)}&#176 F</p>
-            </div>  
+            <h4>Temp Max</h4>
+            <p>${Math.ceil(temp_max)}&#176 F</p>
+        </div> 
             <div class="weather-today-highlights">
                 <h4>Sunrise</h4>
                 <p>${window.moment(sunrise * 1000).format('HH:mm a')}</p>
@@ -93,9 +78,9 @@ function displayData(data)
                 <p>${window.moment(sunset * 1000).format('HH:mm a')} </p>
             </div>  
             <div class="weather-today-highlights">
-                <h4>Pressure</h4>
-                <p>${(pressure * 0.02953).toFixed(2)} in </p>
-            </div> 
+            <h4>Wind speed</h4>
+            <p>${speed} mph</p>
+        </div>  
     `
 
     document.getElementById("weather-current-icon").innerHTML = Math.ceil(temp) + "&#176 F";
@@ -116,12 +101,10 @@ document.querySelector(".search-bar").addEventListener("keyup", function(event){
     }
 });
         btn.addEventListener("click", function(){
-            console.log("Hello1")
             weatherDaily.style.display = "none";
             weatherToday.style.display = "flex";
         })
         btnWeekly.addEventListener("click", function(){
-            console.log("Hello")
             weatherToday.style.display = "none";
             weatherDaily.style.display = "flex";
         })
@@ -133,7 +116,6 @@ function fetchWeather5days(city1)
         + city1 +'&exclude&units=imperial&appid=' + this.apiKey)
         .then((response) => response.json())
         .then(data => displayData1(data))
-        .catch(err => alert("Please enter valid city name!"));
 }
 
 function displayData1(data)
@@ -142,10 +124,10 @@ function displayData1(data)
     let dateTemp = ''
     let dateTemp1 = ''
     console.log(data)
-    for(let j = 1; j < 40; j++)
+    for(let j = 3; j < 40; j++)
     {
         const {dt} = data.list[j]
-        const {temp, temp_kf} = data.list[j].main;
+        const {temp} = data.list[j].main;
         const {icon} = data.list[j].weather[0];
         dateTemp = new Date(dt * 1000).getDay()
         if(dateTemp != dateTemp1)
@@ -160,3 +142,34 @@ function displayData1(data)
     }
     weatherforecast.innerHTML = futureForecast;
 }
+
+function initMap(lat1, lng1) {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 13,
+      center: new google.maps.LatLng(parseFloat(lat1 || 0), parseFloat(lng1 || 0)),
+    });
+    const trafficLayer = new google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
+
+    const trafficLayer1 = new google.maps.TrafficLayer();
+    const transitLayer = new google.maps.TransitLayer();
+    const bikeLayer = new google.maps.BicyclingLayer();
+
+    document.getElementById("traffic").addEventListener("click", function(){
+        trafficLayer1.setMap(map);
+        transitLayer.setMap(null);
+        bikeLayer.setMap(null);
+    })
+    document.getElementById("transit").addEventListener("click", function(){
+        trafficLayer1.setMap(null);
+        transitLayer.setMap(map);
+        bikeLayer.setMap(null);
+    })
+    document.getElementById("bike").addEventListener("click", function(){
+        trafficLayer1.setMap(null);
+        transitLayer.setMap(null);
+        bikeLayer.setMap(map);
+    })
+  }
+  
+  window.initMap = initMap;

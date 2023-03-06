@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather APP</title>
+    <title>Weather & Traffic Application</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,9 +13,8 @@
 </head>
 
 <body>
-    <embed src="/just-relax-11157.mp3" loop="true" autostart="true" width="2" height="0">
-    <div class="container">
-        <div class="search">
+        <div class="Search-Map">
+            <div class="search">
             <input type="text" class="search-bar" placeholder="Search">
             <button class="btn-search"><svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" viewBox="0 0 16 16"
                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +23,15 @@
                     </path>
                 </svg>
             </button>    
+            </div>
+            <div id="map"></div>
+            <div class="btn-map">
+                <button id="traffic">TRAFFIC</button>
+                <button id="transit">TRANSIT</button>
+                <button id="bike">BIKE</button>
+            </div>
         </div>
+        <div class="container">
         <div class="date-container">
             <div class="time" id="time">
                 15:30 <span id="am-pm">PM</span>
@@ -45,8 +52,13 @@
                 <button class="buttontoday" id="my-btnWeekly">Weekly</button>
             </div>
         </div>
+        <h2 style=" width: 100%;
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+        text-transform: capitalize;
+        margin-top: 10px;">Today's highlights</h2> 
         <div class="weather-items" id="weather-items">            
-            <h2>Today's highlights</h2>  
             <div class="weather-today-highlights">
                 <h4>Humidity</h4>
                 <p>60%</p>
@@ -56,11 +68,13 @@
                 <p>6.2 mph</p>
             </div>  
             <div class="weather-today-highlights">
-                <h4>Temp Max</h4>
-                <p style="margin-top: 10px;">30&#176 F</p>
                 <h4>Temp Min</h4>
-                <p style="margin-top: 10px;">10&#176 F</p>
-            </div>  
+                <p>10&#176 F</p>
+            </div>
+            <div class="weather-today-highlights">
+                <h4>Temp Max</h4>
+                <p>30&#176 F</p>   
+            </div>    
             <div class="weather-today-highlights">
                 <h4>Sunrise</h4>
                 <p>5:00 am</p>
@@ -106,12 +120,15 @@
                     <div class="temp">25.6&#176 F</div>
                 </div>
             </div>
-
         </div>
     </div>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN4hE33sZ7yKA5qezgFXdwUcurpDccCsY&callback=initMap&v=weekly"
+      defer
+    ></script>
 </body>
 
 </html>
