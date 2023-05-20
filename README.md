@@ -19,3 +19,5 @@ By clicking the "Today" button, the screen will display the current time, date, 
 Selecting the "Weekly" button will show the temperature forecast for the next five days.
 
 ![image](https://github.com/SnaraC/Weather-Application/assets/90677197/1bcb6f64-b3e0-4c98-aa4f-fa703e6a8d6b)
+
+Note: Google Map Traffic API has been disable, so the map won't work anymore as project completed. 
